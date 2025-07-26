@@ -1,76 +1,38 @@
 //your JS code here. If required.
-const app = document.getElementById('app');
-const video = document.querySelector(".video");
-const audio = document.querySelector(".audio");
-const playBtn = document.querySelector(".play");
-const timeDisplay = document.querySelector(".time-display");
-const timeButtons = document.querySelectorAll("#time-select button");
-const soundButtons = document.querySelectorAll(".sound-picker button");
+const videoElement = document.getElementById('meditation-video');
+const audioElement = document.getElementById('meditation-audio');
+const timeDisplay = document.querySelector('.time-display');
 
-let fakeDuration = 600; 
-let isPlaying = false;
-
-timeButtons.forEach(button => {
-  button.addEventListener("click", function () {
-    if (this.id === "smaller-mins") fakeDuration = 120;
-    if (this.id === "medium-mins") fakeDuration = 300;
-    if (this.id === "long-mins") fakeDuration = 600;
-    updateTimeDisplay(fakeDuration);
-  });
+document.getElementById('beach-sound').addEventListener('click', () => {
+    audioElement.src = 'Sounds/beach.mp3';
+    audioElement.play();
+    videoElement.src = 'video/beach.mp4';
+    videoElement.play();
 });
 
-// Play/Pause functionality
-playBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    audio.play();
-    video.play();
-    isPlaying = true;
-    playBtn.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/pause.png"/>`;
-  } else {
-    audio.pause();
-    video.pause();
-    isPlaying = false;
-    playBtn.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/play.png"/>`;
-  }
+document.getElementById('rain-sound').addEventListener('click', () => {
+    audioElement.src = 'Sounds/rain.mp3';
+    audioElement.play();
+    videoElement.src = 'video/rain.mp4';
+    videoElement.play();
 });
 
-soundButtons.forEach(btn => {
-  btn.addEventListener("click", function () {
-    const newSound = this.getAttribute("data-sound");
-    const newVideo = this.getAttribute("data-video");
+document.getElementById('smaller-mins').addEventListener('click', () => {
+    timeDisplay.textContent = '2:0';
+});
 
-    audio.src = newSound;
-    video.src = newVideo;
+document.getElementById('medium-mins').addEventListener('click', () => {
+    timeDisplay.textContent = '5:0';
+});
 
-    if (isPlaying) {
-      audio.play();
-      video.play();
+document.getElementById('long-mins').addEventListener('click', () => {
+    timeDisplay.textContent = '10:0';
+});
+
+document.querySelector('.play').addEventListener('click', () => {
+    if (audioElement.paused) {
+        audioElement.play();
+    } else {
+        audioElement.pause();
     }
-  });
 });
-
-audio.ontimeupdate = () => {
-  let currentTime = audio.currentTime;
-  let remaining = fakeDuration - currentTime;
-  let minutes = Math.floor(remaining / 60);
-  let seconds = Math.floor(remaining % 60);
-
-  timeDisplay.textContent = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
-
-  if (currentTime >= fakeDuration) {
-    audio.pause();
-    video.pause();
-    audio.currentTime = 0;
-    video.currentTime = 0;
-    isPlaying = false;
-    playBtn.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/play.png"/>`;
-    updateTimeDisplay(fakeDuration);
-  }
-};
-
-// Set initial time display
-function updateTimeDisplay(duration) {
-  const minutes = Math.floor(duration / 60);
-  const seconds = Math.floor(duration % 60);
-  timeDisplay.textContent = `${minutes}:${seconds}`;
-}

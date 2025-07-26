@@ -6,7 +6,8 @@ const timeDisplay = document.querySelector('.time-display');
 const timeButtons = document.querySelectorAll('.time-select button');
 const soundButtons = document.querySelectorAll('.sound-picker button');
 
-let fakeDuration = 600; // default 10 min
+let selectedDuration = 600; // default 10 min
+let fakeDuration = selectedDuration;
 let timer;
 let isPlaying = false;
 
@@ -31,7 +32,8 @@ function togglePlay() {
         clearInterval(timer);
         audio.pause();
         audio.currentTime = 0;
-        updateDisplay(0);
+        fakeDuration = selectedDuration;
+        updateDisplay(fakeDuration);
         isPlaying = false;
         updatePlayIcon();
       }
@@ -43,32 +45,34 @@ function togglePlay() {
 
 function updatePlayIcon() {
   playButton.innerHTML = isPlaying
-    ? <img src="https://img.icons8.com/ios-filled/50/pause--v1.png" width="40" />
-    : <img src="https://img.icons8.com/ios-filled/50/play--v1.png" width="40" />;
+    ? '<img src="https://img.icons8.com/ios-filled/50/pause--v1.png" width="40" />'
+    : '<img src="https://img.icons8.com/ios-filled/50/play--v1.png" width="40" />';
 }
 
-// Event listener for time selection
+// Time selection
 timeButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
-    if (btn.id === 'smaller-mins') fakeDuration = 120;
-    if (btn.id === 'medium-mins') fakeDuration = 300;
-    if (btn.id === 'long-mins') fakeDuration = 600;
+    if (btn.id === 'smaller-mins') selectedDuration = 120;
+    if (btn.id === 'medium-mins') selectedDuration = 300;
+    if (btn.id === 'long-mins') selectedDuration = 600;
+    fakeDuration = selectedDuration;
     updateDisplay(fakeDuration);
   });
 });
 
-// Event listener for sound/video switching
+// Sound and video switch
 soundButtons.forEach((btn) => {
   btn.addEventListener('click', function () {
     audio.src = this.getAttribute('data-sound');
     video.src = this.getAttribute('data-video');
     if (isPlaying) {
       audio.play();
+      video.play();
     }
   });
 });
 
-// Play/pause button
+// Play/pause click
 playButton.addEventListener('click', togglePlay);
 
 // Initialize display

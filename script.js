@@ -14,7 +14,7 @@ let isPlaying = false;
 function updateDisplay(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
-  timeDisplay.textContent = ${mins}:${secs};
+  timeDisplay.textContent = `${mins}:${secs}`;
 }
 
 // Handle play/pause toggle

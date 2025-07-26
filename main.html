@@ -1,41 +1,36 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
-
 <body>
-	<div id="app">
-        <div class="vid-container">
-            <video id="meditation-video" width="600" autoplay loop>
-                <source src="video/beach.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="player-container">
-            <audio id="meditation-audio" controls>
-                <source src="Sounds/beach.mp3" type="audio/mp3">
-                Your browser does not support the audio tag.
-            </audio>
-        </div>
-        <div class="sound-picker">
-            <button id="beach-sound">Beach Sound</button>
-            <button id="rain-sound">Rain Sound</button>
-        </div>
-        <div id="time-select">
-            <button id="smaller-mins">2 Min</button>
-            <button id="medium-mins">5 Min</button>
-            <button id="long-mins">10 Min</button>
-        </div>
-        <div class="time-display">9:59</div>
-        <button class="play">Play/Pause</button>
+  <div class="app" id="app">
+    <div class="vid-container">
+      <video autoplay loop muted>
+        <source src="Videos/beach.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
 
+    <div class="player-container">
+      <audio id="meditation-audio">
+        <source src="Sounds/beach.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
+
+      <div class="time-display">10:0</div>
+
+      <div class="time-select">
+        <button id="smaller-mins" class="smaller-mins">2 Minutes</button>
+        <button id="medium-mins" class="medium-mins">5 Minutes</button>
+        <button id="long-mins" class="long-mins">10 Minutes</button>
+      </div>
+
+      <button class="play">
+        <img src="https://img.icons8.com/ios-filled/50/play--v1.png" width="40" />
+      </button>
+
+      <div class="sound-picker">
+        <button data-sound="Sounds/rain.mp3" data-video="Videos/rain.mp4">🌧</button>
+        <button data-sound="Sounds/beach.mp3" data-video="Videos/beach.mp4">🌞</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
-
-</html>

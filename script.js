@@ -6,27 +6,25 @@ const timeDisplay = document.querySelector('.time-display');
 const timeButtons = document.querySelectorAll('.time-select button');
 const soundButtons = document.querySelectorAll('.sound-picker button');
 
-let selectedDuration = 600; // default 10 minutes
+let selectedDuration = 600;
 let fakeDuration = selectedDuration;
 let timer;
 let isPlaying = true;
 
-// Format time as mm:ss
 function updateDisplay(seconds) {
   const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+  const secs = Math.floor(seconds % 60).toString().padStart(2, '0'); // Ensure seconds are two digits
   timeDisplay.textContent = `${mins}:${secs}`;
 }
 
-// Update play/pause icon
 function updatePlayIcon() {
   playButton.innerHTML = isPlaying
     ? '<img src="https://img.icons8.com/ios-filled/50/pause--v1.png" width="40" />'
     : '<img src="https://img.icons8.com/ios-filled/50/play--v1.png" width="40" />';
 }
 
-// Toggle play/pause
 function togglePlay() {
+  console.log("Toggle Play called. Is Playing:", isPlaying); // Debugging log
   if (isPlaying) {
     audio.pause();
     video.pause();
@@ -35,7 +33,6 @@ function togglePlay() {
     audio.play().catch((err) => console.log("Audio play blocked", err));
     video.play().catch((err) => console.log("Video play blocked", err));
 
-    // Clear any previous timer
     if (timer) clearInterval(timer);
 
     timer = setInterval(() => {
@@ -60,7 +57,6 @@ function togglePlay() {
   updatePlayIcon();
 }
 
-// Handle time selection
 timeButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     if (btn.id === 'smaller-mins') selectedDuration = 120;
@@ -72,7 +68,6 @@ timeButtons.forEach((btn) => {
   });
 });
 
-// Handle sound/video switching
 soundButtons.forEach((btn) => {
   btn.addEventListener('click', function () {
     const newSound = this.getAttribute('data-sound');
@@ -88,8 +83,6 @@ soundButtons.forEach((btn) => {
   });
 });
 
-// Bind play button
 playButton.addEventListener('click', togglePlay);
 
-// Initial display
 updateDisplay(fakeDuration);

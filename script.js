@@ -9,7 +9,7 @@ const soundButtons = document.querySelectorAll('.sound-picker button');
 let selectedDuration = 600; // default 10 minutes
 let fakeDuration = selectedDuration;
 let timer;
-let isPlaying = false;
+let isPlaying = true;
 
 // Format time as mm:ss
 function updateDisplay(seconds) {

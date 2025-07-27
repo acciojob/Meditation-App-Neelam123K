@@ -6,7 +6,7 @@ const timeDisplay = document.querySelector('.time-display');
 const timeButtons = document.querySelectorAll('.time-select button');
 const soundButtons = document.querySelectorAll('.sound-picker button');
 
-let selectedDuration = 599;
+let selectedDuration = 600;
 let fakeDuration = selectedDuration;
 let timer;
 let isPlaying = true;
@@ -61,7 +61,7 @@ timeButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     if (btn.id === 'smaller-mins') selectedDuration = 120;
     if (btn.id === 'medium-mins') selectedDuration = 300;
-    if (btn.id === 'long-mins') selectedDuration = 599;
+    if (btn.id === 'long-mins') selectedDuration = 600;
 
     fakeDuration = selectedDuration;
     updateDisplay(fakeDuration);

@@ -1,14 +1,14 @@
 <body>
   <div class="app" id="app">
     <div class="vid-container">
-      <video  loop muted>
+      <video class="bg-video"  loop muted>
         <source src="./video/beach.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
 
     <div class="player-container">
-      <audio id="meditation-audio">
+      <audio id="meditation-audio" class="meditation-audio">
         <source src="./sounds/beach.mp3" type="audio/mp3" />
         Your browser does not support the audio element.
       </audio>
@@ -26,8 +26,8 @@
       </button>
 
       <div class="sound-picker">
-        <button data-sound="Sounds/rain.mp3" data-video="Videos/rain.mp4">🌧</button>
-        <button data-sound="Sounds/beach.mp3" data-video="Videos/beach.mp4">🌞</button>
+        <button data-sound="./sounds/rain.mp3" data-video="./videos/rain.mp4">🌧</button>
+        <button data-sound="./sounds/beach.mp3" data-video="./videos/beach.mp4">🌞</button>
       </div>
     </div>
   </div>

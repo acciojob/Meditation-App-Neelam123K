@@ -12,8 +12,8 @@ let timer;
 let isPlaying = true;
 
 function updateDisplay(seconds) {
-  const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
-  const secs = Math.floor(seconds % 60).toString().padStart(2, '0'); // Ensure seconds are two digits
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
   timeDisplay.textContent = `${mins}:${secs}`;
 }
 
